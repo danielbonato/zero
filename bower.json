@@ -1,0 +1,9 @@
+{
+	"name": "New Project",
+	"version": "0.0.1",
+	"author": "Daniel <daniel@networkr.com.br>",
+	"description": "scaffolding for new Project",
+
+	"dependencies": {
+	}
+}

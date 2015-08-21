@@ -12,7 +12,7 @@ Estrutura desenvolvida para projetos novos
 
 Sempre que vamos começar um projeto temos que configurar grunt, bower e outras coisas. Então resolvi fazer um projeto zero para isso.
 
-###Plugins instalados
+### Módulos instalados
 - clean
 - copy
 - less
@@ -25,10 +25,15 @@ Sempre que vamos começar um projeto temos que configurar grunt, bower e outras 
 - watch
 - timegrunt
 
+### Complementos 
+- Bootstrap 3.2
+- Jquery 2.1.4
+
 
 ### Como funciona?
 
 - Executar na pasta do projeto: sudo npm update
+- Comandos: "grunt" e "grunt watch" configurados
 
 ### Pré-requisitos de sistema
 

@@ -1,4 +1,4 @@
-    <script src="scripts/vendor.js"></script>
+    <script src="vendor/js/jquery.min.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

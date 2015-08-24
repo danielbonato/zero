@@ -161,20 +161,20 @@ module.exports = function (grunt) {
       dist: {}
     },
 
+
     // LESS
     less: {
       production: {
         files: {
           '<%= config.dist %>/styles/zero.css': [
           
-            '<%= config.app %>/assets/less/*.less',
+            '<%= config.app %>/assets/less/**/*.less',
             
             // Exclui os media queries 
-            '!' + '<%= config.app %>/assets/less/*.less' + '*mobile.less',
-            '!' + '<%= config.app %>/assets/less/*.less' + '*landscape.less',
-            '!' + '<%= config.app %>/assets/less/*.less' + '*tablet.less',
-            '!' + '<%= config.app %>/assets/less/*.less' + '*desktop.less',
-            '!' + '<%= config.app %>/assets/less/*.less' + '*wide.less'
+            '!' + '<%= config.app %>/assets/less/**/*' + '*landscape.less',
+            '!' + '<%= config.app %>/assets/less/**/*' + '*tablet.less',
+            '!' + '<%= config.app %>/assets/less/**/*' + '*desktop.less',
+            '!' + '<%= config.app %>/assets/less/**/*' + '*wide.less'
             ]
         }
       },

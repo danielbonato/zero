@@ -1,8 +1,8 @@
 {
 	"name": "New Project",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Daniel <daniel@networkr.com.br>",
-	"description": "scaffolding for new Project",
+	"description": "scaffolding for new project",
 
 	"dependencies": {
 	}

@@ -1,12 +1,6 @@
-// Generated on 2015-08-21 using
-// generator-webapp 0.5.1
-'use strict';
+// Desenvolvido por Daniel Bonato
 
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// If you want to recursively match all subfolders, use:
-// 'test/spec/**/*.js'
+'use strict';
 
 module.exports = function (grunt) {
 
@@ -31,12 +25,13 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
-        files: ['bower.json'],
-        // tasks: ['wiredep']
+        files: ['bower.json']
       },
       js: {
-        files: ['<%= config.app %>/scripts/{,*/}*.js'],
-        // tasks: ['jshint'],
+        files: [
+          '<%= config.app %>/scripts/{,*/}*.js',
+          '<%= config.app %>/assets/js/**/*.js',
+          ],
         options: {
           livereload: true
         }
@@ -45,7 +40,7 @@ module.exports = function (grunt) {
         files: ['Gruntfile.js']
       },
       styles: {
-        files: ['<%= config.app %>/assets/less/{,*/}*.less'],
+        files: ['<%= config.app %>/assets/less/**/*.less'],
         tasks: ['newer:less:production', 'cssmin', 'autoprefixer']
       },
       livereload: {
@@ -53,7 +48,10 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= config.app %>/{,*/}*.html',
+          '<%= config.app %>/**/*.php',
+          '<%= config.app %>/**/*.html',
+          '<%= config.app %>/assets/js/**/*.js',
+          '<%= config.app %>/assets/less/**/*.less',
           '<%= config.app %>/images/{,*/}*'
         ]
       }
@@ -190,10 +188,9 @@ module.exports = function (grunt) {
           cwd: '<%= config.app %>',
           dest: '<%= config.dist %>',
           src: [
-            '*.{ico,png,txt}',
-            'images/{,*/}*.webp',
-            '{,*/}*.html',
-            '{,*/}*.php',
+            '**/*.php',
+            '**/*.html',
+            '**/*.{ico, png, jpg, txt}',
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',

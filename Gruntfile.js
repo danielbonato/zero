@@ -152,7 +152,8 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= config.dist %>/scripts/main.js': [
-            '<%= config.app %>/scripts/main.js'
+            '<%= config.app %>/scripts/main.js',
+            '<%= config.app %>/assets/js/**/*.js'
           ]
         }
       }

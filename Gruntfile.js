@@ -196,22 +196,12 @@ module.exports = function (grunt) {
             '**/*.php',
             '**/*.html',
             '**/*.{ico, png, jpg, txt}',
+            '**/*.css',
+            '**/*.js',
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
           dest: '<%= config.dist %>/.htaccess'
-        }, {
-          expand: true,
-          dot: true,
-          cwd: '<%= config.app %>/vendor/',
-          src: 'css/*.min.css',
-          dest: '<%= config.dist %>/vendor/'
-        }, {
-          expand: true,
-          dot: true,
-          cwd: '<%= config.app %>/vendor/',
-          src: 'js/*.min.js',
-          dest: '<%= config.dist %>/vendor'
         }]
       }
     },

@@ -43,6 +43,11 @@ module.exports = function (grunt) {
         files: ['<%= config.app %>/assets/less/**/*.less'],
         tasks: ['newer:less:production', 'cssmin', 'autoprefixer']
       },
+      php: 
+      {
+        files: ['<%= config.app %>/**/*.php'],
+        tasks: ['copy']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'

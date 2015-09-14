@@ -1,6 +1,12 @@
-// Desenvolvido por Daniel Bonato
-
+// Generated on 2015-08-21 using
+// generator-webapp 0.5.1
 'use strict';
+
+// # Globbing
+// for performance reasons we're only matching one level down:
+// 'test/spec/{,*/}*.js'
+// If you want to recursively match all subfolders, use:
+// 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
 
@@ -29,12 +35,18 @@ module.exports = function (grunt) {
       },
       js: {
         files: [
-          '<%= config.app %>/scripts/{,*/}*.js',
           '<%= config.app %>/assets/js/**/*.js',
           ],
         options: {
           livereload: true
-        }
+        },
+        tasks: ['uglify', 'copy']
+      },
+      img: {
+        files: [
+        '<%= config.app %>/images/**/*.*'
+        ],
+        tasks: ['copy']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -57,7 +69,7 @@ module.exports = function (grunt) {
           '<%= config.app %>/**/*.html',
           '<%= config.app %>/assets/js/**/*.js',
           '<%= config.app %>/assets/less/**/*.less',
-          '<%= config.app %>/images/{,*/}*'
+          '<%= config.app %>/images/**/*'
         ]
       }
     },
@@ -121,9 +133,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= config.app %>/images',
+          cwd: '<%= config.app %>/images/**/*',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
-          dest: '<%= config.dist %>/images'
+          dest: '<%= config.dist %>/images/**/*'
         }]
       }
     },
@@ -155,14 +167,20 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= config.dist %>/scripts/main.js': [
-            '<%= config.app %>/scripts/main.js',
-            '<%= config.app %>/assets/js/**/*.js'
+            '<%= config.app %>/scripts/main.js'
           ]
         }
       }
     },
     concat: {
-      dist: {}
+      allJS: {
+        files: {
+          '<%= config.dist %>/scripts/allJS.js': [
+          '<%= config.app %>/vendor/js/jquery.min.js',
+          '<%= config.app %>/vendor/js/bootstrap.min.js'
+          ]
+        }
+      }
     },
 
 
@@ -190,12 +208,15 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= config.app %>',
-          dest: '<%= config.dist %>',
+          cwd: '<%= config.app %>/',
+          dest: '<%= config.dist %>/',
           src: [
             '**/*.php',
             '**/*.html',
-            '**/*.{ico, png, jpg, txt}',
+            '**/*.ico',
+            '**/*.png',
+            '**/*.jpg',
+            '**/*.txt',
             '**/*.css',
             '**/*.js',
           ]
@@ -250,7 +271,8 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'copy:dist',
-    'autoprefixer'
+    'autoprefixer',
+    'watch'
   ]);
 
   grunt.registerTask('default', [

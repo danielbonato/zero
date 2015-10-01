@@ -1,12 +1,7 @@
-// Generated on 2015-08-21 using
-// generator-webapp 0.5.1
-'use strict';
+// Desenvolvido por Daniel Bonato
+// danielbonato@gmail.com
 
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// If you want to recursively match all subfolders, use:
-// 'test/spec/**/*.js'
+'use strict';
 
 module.exports = function (grunt) {
 
@@ -35,30 +30,19 @@ module.exports = function (grunt) {
       },
       js: {
         files: [
-          '<%= config.app %>/assets/js/**/*.js',
+          '<%= config.app %>/assets/src/js/**/*.js',
           ],
         options: {
           livereload: true
         },
-        tasks: ['uglify', 'copy']
-      },
-      img: {
-        files: [
-        '<%= config.app %>/images/**/*.*'
-        ],
-        tasks: ['copy']
+        tasks: ['uglify']
       },
       gruntfile: {
         files: ['Gruntfile.js']
       },
       styles: {
-        files: ['<%= config.app %>/assets/less/**/*.less'],
-        tasks: ['newer:less:production', 'cssmin', 'autoprefixer']
-      },
-      php: 
-      {
-        files: ['<%= config.app %>/**/*.php'],
-        tasks: ['copy']
+        files: ['<%= config.app %>/assets/src/less/**/*.less'],
+        tasks: ['less', 'cssmin', 'autoprefixer']
       },
       livereload: {
         options: {
@@ -67,9 +51,8 @@ module.exports = function (grunt) {
         files: [
           '<%= config.app %>/**/*.php',
           '<%= config.app %>/**/*.html',
-          '<%= config.app %>/assets/js/**/*.js',
-          '<%= config.app %>/assets/less/**/*.less',
-          '<%= config.app %>/images/**/*'
+          '<%= config.app %>/assets/src/js/**/*.js',
+          '<%= config.app %>/assets/src/less/**/*.less'
         ]
       }
     },
@@ -104,13 +87,12 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
-      dist: {
+      production: {
         files: [{
           dot: true,
           src: [
             '.tmp',
-            '<%= config.dist %>/*',
-            '!<%= config.dist %>/.git*'
+            '<%= config.app %>/assets/dist/*'
           ]
         }]
       },
@@ -123,42 +105,18 @@ module.exports = function (grunt) {
         browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'ie 8', 'ie 9']
       },
       less: { 
-        src: '<%= config.dist %>/styles/zero.css',
-        dest: '<%= config.dist %>/styles/zero.css'
-      }
-    },
-
-    // The following *-min tasks produce minified files in the dist folder
-    imagemin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/images/**/*',
-          src: '{,*/}*.{gif,jpeg,jpg,png}',
-          dest: '<%= config.dist %>/images/**/*'
-        }]
-      }
-    },
-
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/images',
-          src: '{,*/}*.svg',
-          dest: '<%= config.dist %>/images'
-        }]
+        src: '<%= config.app %>/assets/dist/css/zero.css',
+        dest: '<%= config.app %>/assets/dist/css/zero.css'
       }
     },
 
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
-    // wish to use the Usemin blocks.
     cssmin: {
-      dist: {
+      production: {
         files: {
-          '<%= config.dist %>/styles/zero.css': [
-            '<%= config.dist %>/styles/{,*/}*.css'
+          '<%= config.app %>/assets/dist/css/zero.css': [
+            '<%= config.app %>/assets/dist/css/**/*.css'
           ]
         }
       }
@@ -166,8 +124,8 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          '<%= config.dist %>/scripts/main.js': [
-            '<%= config.app %>/scripts/main.js'
+          '<%= config.app %>/assets/dist/js/main.js': [
+            '<%= config.app %>/assets/src/js/main.js'
           ]
         }
       }
@@ -175,7 +133,7 @@ module.exports = function (grunt) {
     concat: {
       allJS: {
         files: {
-          '<%= config.dist %>/scripts/allJS.js': [
+          '<%= config.app %>/assets/dist/js/allJS.js': [
           '<%= config.app %>/vendor/js/jquery.min.js',
           '<%= config.app %>/vendor/js/bootstrap.min.js'
           ]
@@ -188,56 +146,38 @@ module.exports = function (grunt) {
     less: {
       production: {
         files: {
-          '<%= config.dist %>/styles/zero.css': [
+          '<%= config.app %>/assets/dist/css/zero.css': [
           
-            '<%= config.app %>/assets/less/**/*.less',
+            '<%= config.app %>/assets/src/less/**/*.less',
             
             // Exclui os media queries 
-            '!' + '<%= config.app %>/assets/less/**/*' + '*landscape.less',
-            '!' + '<%= config.app %>/assets/less/**/*' + '*tablet.less',
-            '!' + '<%= config.app %>/assets/less/**/*' + '*desktop.less',
-            '!' + '<%= config.app %>/assets/less/**/*' + '*wide.less'
+            '!' + '<%= config.app %>/assets/src/less/**/*' + '*landscape.less',
+            '!' + '<%= config.app %>/assets/src/less/**/*' + '*tablet.less',
+            '!' + '<%= config.app %>/assets/src/less/**/*' + '*desktop.less',
+            '!' + '<%= config.app %>/assets/src/less/**/*' + '*wide.less'
             ]
         }
       },
     },
 
-    // Copies remaining files to places other tasks can use
+    // COPY FONTS
     copy: {
-      dist: {
+      fonts: {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= config.app %>/',
-          dest: '<%= config.dist %>/',
+          cwd: '<%= config.app %>/assets/src/fonts/',
+          dest: '<%= config.app %>/assets/dist/fonts/',
           src: [
-            '**/*.php',
-            '**/*.html',
-            '**/*.ico',
-            '**/*.png',
-            '**/*.jpg',
-            '**/*.txt',
-            '**/*.css',
-            '**/*.js',
+            './**/*.eot',
+            './**/*.svg',
+            './**/*.ttf',
+            './**/*.woff',
+            './**/*.woff2'
           ]
-        }, {
-          src: 'node_modules/apache-server-configs/dist/.htaccess',
-          dest: '<%= config.dist %>/.htaccess'
         }]
       }
     },
-
-    // Run some tasks in parallel to speed up build process
-    concurrent: {
-      server: [
-        'less:production'
-      ],
-      dist: [
-        'less:production',
-        'imagemin',
-        'svgmin'
-      ]
-    }
   });
 
 
@@ -251,7 +191,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'concurrent:server',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -265,13 +204,13 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('build', [
-    'clean:dist',
-    'concurrent:dist',
-    'concat',
+    'clean:production',
+    'copy',
+    'less',
     'cssmin',
-    'uglify',
-    'copy:dist',
     'autoprefixer',
+    'concat',
+    'uglify',
     'watch'
   ]);
 

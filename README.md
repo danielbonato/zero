@@ -49,6 +49,7 @@ Obs: Lembrar de incluir no seu css padrão os demais css na ordem desejada. Ex: 
 ### Jquery Easing
 
 - Exemplo:
+```
     $(function() {
         $(element).slideUp({
             duration: 1000, 
@@ -56,27 +57,32 @@ Obs: Lembrar de incluir no seu css padrão os demais css na ordem desejada. Ex: 
             complete: callback
         });
     });
+```
 
 ### LazySizes
 
-- non-responsive images: -
-<img data-src="image.jpg" class="lazyload" />
-
+- non-responsive images:
+```
+    <img data-src="image.jpg" class="lazyload" />
+```
 - responsive example with automatic sizes calculation: -
-<img
-    data-sizes="auto"
-    data-src="image2.jpg"
-    data-srcset="image1.jpg 300w,
-    image2.jpg 600w,
-    image3.jpg 900w" class="lazyload" />
+```
+    <img
+        data-sizes="auto"
+        data-src="image2.jpg"
+        data-srcset="image1.jpg 300w,
+        image2.jpg 600w,
+        image3.jpg 900w" class="lazyload" />
+```
 
-- iframe example -
-<iframe frameborder="0"
-    class="lazyload"
-    allowfullscreen=""
-    data-src="//www.youtube.com/embed/ZfV-aYdU4uE">
-</iframe>
-
+- iframe example
+```
+    <iframe frameborder="0"
+        class="lazyload"
+        allowfullscreen=""
+        data-src="//www.youtube.com/embed/ZfV-aYdU4uE">
+    </iframe>
+```
 
 ### Pré-requisitos de sistema
 

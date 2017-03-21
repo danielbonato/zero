@@ -8,6 +8,6 @@
   ga('create','UA-XXXXX-X');ga('send','pageview');
 </script>
 
-<script src="assets/dist/js/allJS.js"></script>
+<script src="app/assets/dist/js/allJS.js"></script>
 
-<script src="assets/dist/js/main.js"></script>
+<script src="app/assets/dist/js/main.js"></script>

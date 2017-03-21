@@ -10,11 +10,12 @@ module.exports = function (grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   // Configurable paths
   var config = {
-    app: 'app',
-    dist: 'dist'
+    app: './app',
+    dist: './app'
   };
 
   // Define the configuration for all the tasks
@@ -135,7 +136,9 @@ module.exports = function (grunt) {
         files: {
           '<%= config.app %>/assets/dist/js/allJS.js': [
           '<%= config.app %>/vendor/js/jquery.min.js',
-          '<%= config.app %>/vendor/js/bootstrap.min.js'
+          '<%= config.app %>/vendor/js/bootstrap.min.js',
+          '<%= config.app %>/vendor/js/jquery.easing.min.js',
+          '<%= config.app %>/vendor/js/lazysizes.js'
           ]
         }
       }
@@ -145,6 +148,10 @@ module.exports = function (grunt) {
     // LESS
     less: {
       production: {
+        options: {
+          compress: true,
+          sourceMap: false,
+        },
         files: {
           '<%= config.app %>/assets/dist/css/zero.css': [
           
@@ -169,6 +176,7 @@ module.exports = function (grunt) {
           cwd: '<%= config.app %>/assets/src/fonts/',
           dest: '<%= config.app %>/assets/dist/fonts/',
           src: [
+            './**/*.css',
             './**/*.eot',
             './**/*.svg',
             './**/*.ttf',
@@ -206,7 +214,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:production',
     'copy',
-    'less',
+    'less:production',
     'cssmin',
     'autoprefixer',
     'concat',
